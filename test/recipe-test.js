@@ -63,5 +63,11 @@ describe('Recipe List', function(){
 		});
 	});
 
-
+	it('Should delete recipes on DELETE', function(){
+		return chai.request(app).get('/recipes').then(function(res){
+			return chai.request(app).delete(`/recipes/${res.body[0].id}`);
+		}).then(function(res){
+			expect(res).to.have.status(204);
+		});
+	});
 });
